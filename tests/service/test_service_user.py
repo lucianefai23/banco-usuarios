@@ -1,4 +1,4 @@
+import unittest
 from src.service.service_user import ServiceUser
 
-class TestServiceUser:
-
+class TestServiceUser(unittest.TestCase):
