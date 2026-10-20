@@ -17,22 +17,22 @@ class ServiceUser:
         if name is not None and job is not None:
             if type(name) is str and type(job) is str:
                 if self.check_user(name):
-                    return "Usuario ja cadastrado"
+                    return "Usuário já cadastrado"
                 else:
                     user = User(name=name, job=job)
                     self.store.bd.append(user)
-                    return "Usuario adicionado com sucesso"
+                    return "Usuário adicionado com sucesso"
             else:
                 return "Nome ou Profissão precisa ser um texto"
         else:
-            return "Usuario nao adicionado"
+            return "Usuário nao adicionado"
 
     def del_user(self, name):
         user_bd = self.check_user(name)
         if user_bd != None:
             self.store.bd.remove(user_bd)
             return "Usuario removido"
-        return "Usuario não encontrado"
+        return "Usuário não encontrado"
 
     def update_user(self, name, new_job):
         user_bd = self.check_user(name)
@@ -40,12 +40,12 @@ class ServiceUser:
             user_bd.job = new_job
             return "Profissão atualizada com sucesso"
         else:
-            return "Usuario não encontrado"
+            return "Usuário não encontrado"
 
     def select_user(self, name):
         user_bd = self.check_user(name)
         if user_bd is not None:
             return "Profissão: " + user_bd.job
         else:
-            return "Usuario não encontrado"
+            return "Usuário não encontrado"
 
