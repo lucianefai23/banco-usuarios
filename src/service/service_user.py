@@ -12,20 +12,25 @@ class ServiceUser:
             if user.name == name:
                 return user
         return None
-
+ #correção do método em add
     def add_user(self, name, job):
-        if name is not None and job is not None:
-            if type(name) is str and type(job) is str:
-                if self.check_user(name):
-                    return "Usuário já cadastrado"
-                else:
-                    user = User(name=name, job=job)
-                    self.store.bd.append(user)
-                    return "Usuário adicionado com sucesso"
-            else:
-                return "Nome ou Profissão precisa ser um texto"
-        else:
-            return "Usuário nao adicionado"
+       # if name is not None and job is not None:
+         if name is None or job is None:
+            return "Os campos Nome ou Job não podem ser nulos"
+            #if type(name) is str and type(job) is str:
+         if not isinstance(name, str) or not isinstance(job, str):
+            return "Nome ou Profissão precisa ser um texto"
+             
+        if self.check_user(name):
+            return "Usuário já cadastrado"
+                #else:                    
+        user = User(name=name, job=job)
+        self.store.bd.append(user)
+        return "Usuário adicionado com sucesso"
+           # else:
+               # return "Nome ou Profissão precisa ser um texto"
+       # else:
+            #return "Usuário nao adicionado"
 
     def del_user(self, name):
         user_bd = self.check_user(name)
